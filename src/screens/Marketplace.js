@@ -8,27 +8,24 @@ import {
   Image,
   TouchableOpacity,
   FlatList,
+  Pressable,
 } from "react-native";
 import React, { useState, useEffect } from "react";
 import { auth, db } from "../../firebase";
 import { doc, getDoc, collection, getDocs } from "firebase/firestore";
 import { useNavigation } from "@react-navigation/native";
-import Icons from "react-native-vector-icons/FontAwesome5";
+import Icons from "react-native-vector-icons/FontAwesome6";
+import { FloatingAction } from "react-native-floating-action";
 
-const FloatingButton = () => {
-  return (
-    <View style={styles.container}>
-      <TouchableOpacity style={styles.button}>
-        <Text style={styles.buttonText}>Floating Button</Text>
-      </TouchableOpacity>
-    </View>
-  );
-};
 
 const Marketplace = () => {
   const [email, setEmail] = useState("");
   const [userinfo, setUser] = useState([]);
-  const [data, setData] = useState(["10% off on food", "12% off on clothes", "15% off on furniture"]);
+  const [data, setData] = useState([
+    "10% off on food",
+    "12% off on clothes",
+    "15% off on furniture",
+  ]);
   const [monument, setMonument] = useState([
     "Handicraft",
     "Textile",
@@ -36,7 +33,14 @@ const Marketplace = () => {
     "Furniture",
     "Food",
   ]);
-  const [plan, setPlan] = useState(["Jute Bag", "Papad", "Khadi Shirt", "Kurta", "Ayurveda Soap", "Handmade Paper"]);
+  const [plan, setPlan] = useState([
+    "Jute Bag",
+    "Papad",
+    "Khadi Shirt",
+    "Kurta",
+    "Ayurveda Soap",
+    "Handmade Paper",
+  ]);
   const navigation = useNavigation();
   const user = auth.currentUser;
 
@@ -108,6 +112,33 @@ const Marketplace = () => {
   const handleNearby = (element) => {
     navigation.navigate("City", { element });
   };
+
+  const actions = [
+    {
+      text: "Accessibility",
+      icon: require("../assets/splash.png"),
+      name: "bt_accessibility",
+      position: 2,
+    },
+    {
+      text: "Language",
+      icon: require("../assets/splash.png"),
+      name: "bt_language",
+      position: 1,
+    },
+    {
+      text: "Location",
+      icon: require("../assets/splash.png"),
+      name: "bt_room",
+      position: 3,
+    },
+    {
+      text: "Video",
+      icon: require("../assets/splash.png"),
+      name: "bt_videocam",
+      position: 4,
+    },
+  ];
 
   return (
     <SafeAreaView style={styles.container}>
@@ -208,7 +239,26 @@ const Marketplace = () => {
           contentContainerStyle={styles.tertiarycards} // Apply styles to the container
           showsVerticalScrollIndicator={false}
         />
+
+        {/* <FloatingAction
+          actions={actions}
+          onPressItem={(name) => {
+            console.log(`selected button: ${name}`);
+          }}
+        /> */}
       </ScrollView>
+      {/* <View style={flex= 1}>
+          <FAB onPress={displayAlert} title="Add" />
+        </View> */}
+      <FloatingAction
+          floatingIcon={<Icons name="cart-shopping" style={{fontSize: 20, color:"white"}} />}
+          actions={actions}
+          buttonSize={60}
+          color = {"#00ADB5"}
+          onPressItem={(name) => {
+            console.log(`selected button: ${name}`);
+          }}
+        />
     </SafeAreaView>
   );
 };
@@ -364,12 +414,10 @@ const styles = StyleSheet.create({
     fontWeight: "400",
     fontSize: 20,
   },
-  floatingcontainer: {
+  floatingButton: {
     position: "absolute",
     bottom: 20,
     right: 20,
-  },
-  floatingbutton: {
     backgroundColor: "#007bff",
     borderRadius: 30,
     paddingVertical: 15,
@@ -382,10 +430,5 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 0.25,
     shadowRadius: 3.84,
-  },
-  floatingbuttonText: {
-    color: "#fff",
-    fontSize: 16,
-    fontWeight: "bold",
   },
 });
