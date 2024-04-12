@@ -7,6 +7,7 @@ import {
   ScrollView,
   Image,
   TouchableOpacity,
+  FlatList,
 } from "react-native";
 import React, { useState, useEffect } from "react";
 import { auth, db } from "../../firebase";
@@ -14,23 +15,28 @@ import { doc, getDoc, collection, getDocs } from "firebase/firestore";
 import { useNavigation } from "@react-navigation/native";
 import Icons from "react-native-vector-icons/FontAwesome5";
 
+const FloatingButton = () => {
+  return (
+    <View style={styles.container}>
+      <TouchableOpacity style={styles.button}>
+        <Text style={styles.buttonText}>Floating Button</Text>
+      </TouchableOpacity>
+    </View>
+  );
+};
+
 const Marketplace = () => {
   const [email, setEmail] = useState("");
   const [userinfo, setUser] = useState([]);
-  const [data, setData] = useState([
-    "10% Off food",
-    "12% on clothes"
-  ]);
+  const [data, setData] = useState(["10% off on food", "12% off on clothes", "15% off on furniture"]);
   const [monument, setMonument] = useState([
-    "Food",
+    "Handicraft",
+    "Textile",
+    "Herbal Ayurveda",
     "Furniture",
-    "Clothes",
-    "Home Stuff",
+    "Food",
   ]);
-  const [plan, setPlan] = useState([
-    "10% Off food",
-    "12% on clothes"
-  ]);
+  const [plan, setPlan] = useState(["Jute Bag", "Papad", "Khadi Shirt", "Kurta", "Ayurveda Soap", "Handmade Paper"]);
   const navigation = useNavigation();
   const user = auth.currentUser;
 
@@ -105,7 +111,7 @@ const Marketplace = () => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <ScrollView>
+      <ScrollView showsVerticalScrollIndicator={false}>
         <Text style={styles.title}>
           Hi, {"\n"}
           <Text style={{ textTransform: "capitalize" }}>
@@ -118,6 +124,7 @@ const Marketplace = () => {
           // snapToInterval={100}
           snapToAlignment={"center"}
           style={styles.herocards}
+          showsHorizontalScrollIndicator={false}
         >
           {data.map((element, key) => (
             <TouchableOpacity
@@ -146,6 +153,7 @@ const Marketplace = () => {
             snapToAlignment={"center"}
             style={styles.secondarycards}
             flexDirection="row"
+            showsHorizontalScrollIndicator={false}
             flex={2}
           >
             {monument.map((element, key) => (
@@ -165,14 +173,15 @@ const Marketplace = () => {
           </ScrollView>
         </View>
 
-        <Text style={styles.subTitle}>New Offers</Text>
+        <Text style={styles.subTitle}>Best Sellers</Text>
 
-        <ScrollView
-          horizontal
+        {/* <ScrollView
+          // horizontal
           // decelerationRate={0}
           // snapToInterval={100}
           snapToAlignment={"center"}
           style={styles.tertiarycards}
+          showsHorizontalScrollIndicator={false}
         >
           {plan.map((element, key) => (
             <TouchableOpacity
@@ -183,7 +192,22 @@ const Marketplace = () => {
               <Text style={styles.tertiarycardTitle}>{element}</Text>
             </TouchableOpacity>
           ))}
-        </ScrollView>
+        </ScrollView> */}
+        <FlatList
+          data={plan}
+          renderItem={({ item }) => (
+            <TouchableOpacity
+              style={styles.tertiarycard}
+              onPress={() => handlePlan(item)}
+            >
+              <Text style={styles.tertiarycardTitle}>{item}</Text>
+            </TouchableOpacity>
+          )}
+          keyExtractor={(item, index) => index.toString()}
+          numColumns={2} // Set number of columns to 2
+          contentContainerStyle={styles.tertiarycards} // Apply styles to the container
+          showsVerticalScrollIndicator={false}
+        />
       </ScrollView>
     </SafeAreaView>
   );
@@ -276,7 +300,7 @@ const styles = StyleSheet.create({
     marginBottom: 35,
   },
   secondarycard: {
-    backgroundColor: "#efefef",
+    backgroundColor: "#fff",
     // flex:1,
     // alignItems: "flex-start",
     // paddingVertical: 20,
@@ -303,7 +327,6 @@ const styles = StyleSheet.create({
   tertiarycards: {
     marginBottom: 35,
     marginTop: 15,
-    flex: 1,
   },
   tertiarycard: {
     backgroundColor: "#efefef",
@@ -311,8 +334,9 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     borderRadius: 20,
     height: 175,
-    width: 175,
-    marginRight: 12,
+    width: "48%",
+    marginRight: 5,
+    marginBottom: 10,
   },
   tertiarycardTitle: {
     color: "#1c1c1c",
@@ -339,5 +363,29 @@ const styles = StyleSheet.create({
     textAlign: "center",
     fontWeight: "400",
     fontSize: 20,
+  },
+  floatingcontainer: {
+    position: "absolute",
+    bottom: 20,
+    right: 20,
+  },
+  floatingbutton: {
+    backgroundColor: "#007bff",
+    borderRadius: 30,
+    paddingVertical: 15,
+    paddingHorizontal: 20,
+    elevation: 3, // For Android shadow
+    shadowColor: "#000", // For iOS shadow
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+  },
+  floatingbuttonText: {
+    color: "#fff",
+    fontSize: 16,
+    fontWeight: "bold",
   },
 });
