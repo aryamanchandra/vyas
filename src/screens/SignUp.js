@@ -11,7 +11,6 @@ import React, { useEffect, useState } from "react";
 import { auth } from "../../firebase";
 import { useNavigation } from "@react-navigation/native";
 import { createUserWithEmailAndPassword } from "firebase/auth";
-import InputStyle from "../components/TextInput";
 import { db } from "../../firebase";
 import { doc, setDoc } from "firebase/firestore"; 
 import { collection, addDoc } from "firebase/firestore"; 
@@ -130,7 +129,7 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 40,
-    fontWeight: 700,  
+    fontWeight: "700",  
     color: "#F8F8F8",
   },
   inputContainer: {
