@@ -60,8 +60,8 @@ const Login = () => {
           </View>
           <TextInput
             label="Email"
-            placeholder="johndoe@xyz.com"
-            placeholderTextColor={"#4E4E4E"}
+            placeholder="sushmakumar@xyz.com"
+            placeholderTextColor={"#e6e6e6"}
             value={email}
             onChangeText={(text) => setEmail(text)}
             style={styles.textInput}
@@ -73,7 +73,7 @@ const Login = () => {
           </View>
           <TextInput
             placeholder="•••••••••••••"
-            placeholderTextColor={"#4E4E4E"}
+            placeholderTextColor={"#e6e6e6"}
             value={password}
             onChangeText={(text) => setPassword(text)}
             style={styles.textInput}
@@ -108,13 +108,13 @@ const styles = StyleSheet.create({
     flex: 1,
     // justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "#000",
+    backgroundColor: "#fff",
     paddingTop:150,
   },
   title: {
     fontSize: 40,
     fontWeight: "700",
-    color: "#F8F8F8",
+    color: "#1f1f1f",
     paddingBottom:50,
   },
   inputContainer: {
@@ -145,32 +145,32 @@ const styles = StyleSheet.create({
     marginTop: 40,
   },
   button: {
-    backgroundColor: "#fff",
+    backgroundColor: "#1f1f1f",
     width: "100%",
     paddingVertical: 15,
     borderRadius: 30,
     color: "#111",
   },
   buttonOutline: {
-    backgroundColor: "#fff",
+    backgroundColor: "#1f1f1f",
     marginTop: 5,
     // borderColor:"#1c1c1c",
     // borderWidth:2,
   },
   buttonText: {
-    color: "#111",
+    color: "#fff",
     // fontWeight:"700",
     fontSize: 16,
     textAlign: "center",
   },
   buttonOutlineText: {
-    color: "#111",
+    color: "#fff",
     // fontWeight:"700",
     fontSize: 16,
     textAlign: "center",
   },
   text: {
-    color: "#E2E2E2",
+    color: "#878787",
     marginTop:8,
   },
   inputcontainer: {
@@ -180,7 +180,7 @@ const styles = StyleSheet.create({
   },
   labelContainer: {
     position: "absolute",
-    backgroundColor: "#000",
+    backgroundColor: "#fff",
     top: -10,
     left: 25,
     padding: 5,
@@ -198,6 +198,6 @@ const styles = StyleSheet.create({
     margin: 5,
     borderRadius: 30,
     borderColor: "#828282",
-    color: "#fff",
+    color: "#1f1f1f",
   },
 });

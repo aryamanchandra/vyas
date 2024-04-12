@@ -56,8 +56,8 @@ const SignUp = () => {
             <Text style={styles.label}>First Name</Text>
           </View>
           <TextInput
-            placeholder="John"
-            placeholderTextColor={"#4E4E4E"}
+            placeholder="Sushma"
+            placeholderTextColor={"#e6e6e6"}
             value={firstName}
             onChangeText={(text) => setfirstName(text)}
             style={styles.textInput}
@@ -68,8 +68,8 @@ const SignUp = () => {
             <Text style={styles.label}>Last Name</Text>
           </View>
           <TextInput
-            placeholder="Doe"
-            placeholderTextColor={"#4E4E4E"}
+            placeholder="Kumar"
+            placeholderTextColor={"#e6e6e6"}
             value={lastName}
             onChangeText={(text) => setlastName(text)}
             style={styles.textInput}
@@ -80,8 +80,8 @@ const SignUp = () => {
             <Text style={styles.label}>Email</Text>
           </View>
           <TextInput
-            placeholder="johndoe@xyz.com"
-            placeholderTextColor={"#4E4E4E"}
+            placeholder="sushmakumar@xyz.com"
+            placeholderTextColor={"#e6e6e6"}
             value={email}
             onChangeText={(text) => setEmail(text)}
             style={styles.textInput}
@@ -93,7 +93,7 @@ const SignUp = () => {
           </View>
           <TextInput
             placeholder="•••••••••••••"
-            placeholderTextColor={"#4E4E4E"}
+            placeholderTextColor={"#e6e6e6"}
             value={password}
             onChangeText={(text) => setPassword(text)}
             style={styles.textInput}
@@ -123,19 +123,21 @@ export default SignUp;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "center",
+    // justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "#000",
+    backgroundColor: "#fff",
+    paddingTop:150,
   },
   title: {
     fontSize: 40,
-    fontWeight: "700",  
-    color: "#F8F8F8",
+    fontWeight: "700",
+    color: "#1f1f1f",
+    paddingBottom:50,
   },
   inputContainer: {
     width: "80%",
     marginBottom: 20,
-    marginTop: 50,
+    marginTop: 0,
   },
   input: {
     backgroundColor: "white",
@@ -143,49 +145,49 @@ const styles = StyleSheet.create({
     paddingVertical: 15,
     borderRadius: 30,
     marginTop: 20,
-    borderColor: "#",
+    // borderColor: "#",
     borderWidth: 1,
   },
   forgot: {
     fontStyle: "italic",
     paddingLeft: 20,
-    paddingTop: 10,
+    paddingTop: 2,
     textAlign: "left",
     color: "#00ADB5",
   },
   buttonContainer: {
-    width: "80%",
+    width: "60%",
     justifyContent: "center",
     alignItems: "center",
     marginTop: 40,
   },
   button: {
-    backgroundColor: "#fff",
+    backgroundColor: "#1f1f1f",
     width: "100%",
     paddingVertical: 15,
     borderRadius: 30,
     color: "#111",
   },
   buttonOutline: {
-    backgroundColor: "#fff",
+    backgroundColor: "#1f1f1f",
     marginTop: 5,
     // borderColor:"#1c1c1c",
     // borderWidth:2,
   },
   buttonText: {
-    color: "#111",
+    color: "#fff",
     // fontWeight:"700",
     fontSize: 16,
     textAlign: "center",
   },
   buttonOutlineText: {
-    color: "#111",
+    color: "#fff",
     // fontWeight:"700",
     fontSize: 16,
     textAlign: "center",
   },
   text: {
-    color: "#E2E2E2",
+    color: "#878787",
     marginTop:8,
   },
   inputcontainer: {
@@ -195,7 +197,7 @@ const styles = StyleSheet.create({
   },
   labelContainer: {
     position: "absolute",
-    backgroundColor: "#000",
+    backgroundColor: "#fff",
     top: -10,
     left: 25,
     padding: 5,
@@ -213,6 +215,6 @@ const styles = StyleSheet.create({
     margin: 5,
     borderRadius: 30,
     borderColor: "#828282",
-    color: "#fff",
+    color: "#1f1f1f",
   },
 });

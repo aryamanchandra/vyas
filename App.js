@@ -8,6 +8,7 @@ import Community from "./src/screens/Community";
 import Icon from "react-native-vector-icons/FontAwesome5";
 import Icons from "react-native-vector-icons/MaterialCommunityIcons";
 import Ionicons from "react-native-vector-icons/Ionicons";
+import AntDesign from "react-native-vector-icons/AntDesign";
 import FeatherIcon from "react-native-vector-icons/Feather";
 import You from "./src/screens/You";
 import Login from "./src/screens/Login";
@@ -23,7 +24,7 @@ const Main = () => {
       screenOptions={{
         tabBarStyle: {
           height: 50,
-          backgroundColor: "#000",
+          backgroundColor: "#fff",
           borderTopWidth: 0,
         },
         tabBarActiveTintColor: '#00ADB5',
@@ -38,8 +39,8 @@ const Main = () => {
           headerShown: false,
           tabBarIcon: (tabInfo) => {
             return (
-              <Icons
-                name="home"
+              <FeatherIcon
+                name="shopping-bag"
                 size={30}
                 color={tabInfo.focused ? "#00ADB5" : "#8e8e93"}
                 style={styles.icons}
@@ -56,8 +57,8 @@ const Main = () => {
           headerShown: false,
           tabBarIcon: (tabInfo) => {
             return (
-              <FeatherIcon
-                name="search"
+              <AntDesign
+                name="earth"
                 size={28}
                 color={tabInfo.focused ? "#00ADB5" : "#8e8e93"}
               />
@@ -72,8 +73,8 @@ const Main = () => {
           headerShown: false,
           tabBarIcon: (tabInfo) => {
             return (
-              <Ionicons
-                name="settings-sharp"
+              <Icons
+                name="account"
                 size={26}
                 color={tabInfo.focused ? "#00ADB5" : "#8e8e93"}
               />
@@ -119,7 +120,7 @@ const styles = StyleSheet.create({
     color: "#00ADB5",
   },
   bottomBar: {
-    backgroundColor: "000",
+    backgroundColor: "fff",
     marginHorizontal: 0,
     marginVertical: 0,
   },
