@@ -27,7 +27,7 @@ const Login = () => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
       if (role === "shg" || role === "company") {
         navigation.replace("MainCompany");
-      } else if (role === "user") {
+      } else if (role === "shopper") {
         navigation.replace("Main");
       } else {
         console.log("Invalid role:", role);
@@ -54,7 +54,7 @@ const Login = () => {
             setRole(data.data().role);
             if (role === "shg" || role === "company") {
               navigation.replace("MainCompany");
-            } else if (role === "user") {
+            } else if (role === "shopper") {
               navigation.replace("Main");
             } else {
               console.log("Invalid role:", role);
