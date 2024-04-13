@@ -17,7 +17,6 @@ import { useNavigation } from "@react-navigation/native";
 import Icons from "react-native-vector-icons/FontAwesome6";
 import { FloatingAction } from "react-native-floating-action";
 
-
 const Marketplace = () => {
   const [email, setEmail] = useState("");
   const [userinfo, setUser] = useState([]);
@@ -73,7 +72,6 @@ const Marketplace = () => {
               const data = docSnap.data();
               setUser(data);
               setMonument(newMonumentsData);
-
             }
           } catch (e) {
             console.log(e);
@@ -214,21 +212,23 @@ const Marketplace = () => {
             </TouchableOpacity>
           ))}
         </ScrollView> */}
-        <FlatList
-          data={plan}
-          renderItem={({ item }) => (
-            <TouchableOpacity
-              style={styles.tertiarycard}
-              onPress={() => handlePlan(item)}
-            >
-              <Text style={styles.tertiarycardTitle}>{item}</Text>
-            </TouchableOpacity>
-          )}
-          keyExtractor={(item, index) => index.toString()}
-          numColumns={2} // Set number of columns to 2
-          contentContainerStyle={styles.tertiarycards} // Apply styles to the container
-          showsVerticalScrollIndicator={false}
-        />
+        <ScrollView horizontal={true} style={{ width: "100%" }}>
+          <FlatList
+            data={plan}
+            renderItem={({ item }) => (
+              <TouchableOpacity
+                style={styles.tertiarycard}
+                onPress={() => handlePlan(item)}
+              >
+                <Text style={styles.tertiarycardTitle}>{item}</Text>
+              </TouchableOpacity>
+            )}
+            keyExtractor={(item, index) => index.toString()}
+            numColumns={2} // Set number of columns to 2
+            contentContainerStyle={styles.tertiarycards} // Apply styles to the container
+            showsVerticalScrollIndicator={false}
+          />
+        </ScrollView>
 
         {/* <FloatingAction
           actions={actions}
@@ -240,15 +240,27 @@ const Marketplace = () => {
       {/* <View style={flex= 1}>
           <FAB onPress={displayAlert} title="Add" />
         </View> */}
-      <FloatingAction
-          floatingIcon={<Icons name="cart-shopping" style={{fontSize: 20, color:"white"}} />}
+      <View>
+        <FloatingAction
+          floatingIcon={
+            <Icons
+              name="cart-shopping"
+              style={{ fontSize: 20, color: "white" }}
+            />
+          }
+          distanceToEdge={{horizontal: 10, vertical: 50 }}
           actions={actions}
+          style={{
+            position: 'absolute',
+            paddingBottom:40,
+          }}
           buttonSize={60}
-          color = {"#00ADB5"}
+          color={"#00ADB5"}
           onPressItem={(name) => {
             console.log(`selected button: ${name}`);
           }}
         />
+      </View>
     </SafeAreaView>
   );
 };
@@ -406,7 +418,7 @@ const styles = StyleSheet.create({
   },
   floatingButton: {
     position: "absolute",
-    bottom: 20,
+    bottom: 40,
     right: 20,
     backgroundColor: "#007bff",
     borderRadius: 30,

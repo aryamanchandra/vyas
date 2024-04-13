@@ -94,9 +94,17 @@ const MainCompany = () => {
       style={styles.bottomBar}
       screenOptions={{
         tabBarStyle: {
-          height: 50,
+          height: 60,
+          marginBottom:20,
+          position: 'absolute',
+          borderRadius:40,
           backgroundColor: "#fff",
           borderTopWidth: 0,
+          width:"95%",
+          marginLeft: 10,
+          marginRight:10,
+          textAlign:"center",
+          paddingBottom:5,
         },
         tabBarActiveTintColor: "#00ADB5",
         tabBarItemStyle: {
@@ -214,7 +222,7 @@ const styles = StyleSheet.create({
     color: "#00ADB5",
   },
   bottomBar: {
-    backgroundColor: "fff",
+    // backgroundColor: "fff",
     marginHorizontal: 0,
     marginVertical: 0,
   },
