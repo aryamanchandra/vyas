@@ -21,10 +21,26 @@
       "adaptiveIcon": {
         "foregroundImage": "./src/assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.aryamanchandra.vyas"
     },
     "web": {
       "favicon": "./src/assets/favicon.png"
-    }
+    },
+    "extra": {
+      "eas": {
+        "projectId": "b0c69951-54e4-459c-a738-30c57623933a"
+      }
+    },
+    "plugins": [
+      [
+        "@viro-community/react-viro",
+        {
+          "android": {
+            "xRMode": ["GVR", "AR", "OVR_MOBILE"]
+          }
+        }
+      ]
+    ]
   }
 }
