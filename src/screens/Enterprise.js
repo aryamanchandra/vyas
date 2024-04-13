@@ -25,6 +25,8 @@ const Enterprise = () => {
   const navigation = useNavigation();
   const [email, setEmail] = useState("");
   const [userinfo, setUser] = useState([]);
+  const contracts = ["Contract 1", "Contract 2", "Contract 3", "Contract 4"];
+  const learning = ["Learning 1", "Learning 2", "Learning 3", "Learning 4"];
   const [data, setData] = useState(["@sapnashg", "@foodus", "@handicraftshg"]);
   const user = auth.currentUser;
 
@@ -107,6 +109,33 @@ const Enterprise = () => {
     },
   ];
 
+  const actions = [
+    {
+      text: "Accessibility",
+      icon: require("../assets/splash.png"),
+      name: "bt_accessibility",
+      position: 2,
+    },
+    {
+      text: "Language",
+      icon: require("../assets/splash.png"),
+      name: "bt_language",
+      position: 1,
+    },
+    {
+      text: "Location",
+      icon: require("../assets/splash.png"),
+      name: "bt_room",
+      position: 3,
+    },
+    {
+      text: "Video",
+      icon: require("../assets/splash.png"),
+      name: "bt_videocam",
+      position: 4,
+    },
+  ];
+
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView showsVerticalScrollIndicator={false}>
@@ -119,12 +148,12 @@ const Enterprise = () => {
               <Text style={styles.socialiconNumbers}>20%↑</Text>
             </View>
             <View style={styles.socialiconContainer}>
-              <Ionicon name="people" size={24}/>
+              <Ionicon name="people" size={24} />
               <Text style={styles.socialiconText}>Reach</Text>
               <Text style={styles.socialiconNumbers}>2.5K↑</Text>
             </View>
             <View style={styles.socialiconContainer}>
-              <MaterialIcons name="ads-click" size={24}/>
+              <MaterialIcons name="ads-click" size={24} />
               <Text style={styles.socialiconText}>Impressions</Text>
               <Text style={styles.socialiconNumbers}>13%↑</Text>
             </View>
@@ -132,14 +161,125 @@ const Enterprise = () => {
         </View>
         <View>
           <Text style={styles.subTitle}>Product Posting</Text>
+          <View>
+            <Text style={styles.subheading}>Top Posting</Text>
+            <ScrollView
+              horizontal
+              style={{ paddingBottom: 20 }}
+              showsHorizontalScrollIndicator={false}
+            >
+              {contracts.map((element, key) => (
+                <TouchableOpacity
+                  style={styles.cardOffer}
+                  key={key}
+                  // onPress={() => handleGuide(element.city)}
+                >
+                  <Text style={styles.cardTitleOffer}>{element}</Text>
+                  {/* <Text style={{ marginLeft: "auto",color:"#828282" }}>11 Feb 2024</Text> */}
+                </TouchableOpacity>
+              ))}
+            </ScrollView>
+            <Text style={styles.subheading}>Recommendation</Text>
+            <ScrollView
+              horizontal
+              style={{ paddingBottom: 20 }}
+              showsHorizontalScrollIndicator={false}
+            >
+              {contracts.map((element, key) => (
+                <TouchableOpacity
+                  style={styles.cardOffer}
+                  key={key}
+                  // onPress={() => handleGuide(element.city)}
+                >
+                  <Text style={styles.cardTitleOffer}>{element}</Text>
+                  {/* <Text style={{ marginLeft: "auto",color:"#828282" }}>11 Feb 2024</Text> */}
+                </TouchableOpacity>
+              ))}
+            </ScrollView>
+          </View>
         </View>
         <View>
           <Text style={styles.subTitle}>Contracts</Text>
+          <View>
+            <Text style={styles.subheading}>Ongoing</Text>
+            <ScrollView
+              style={{ paddingBottom: 20 }}
+              showsHorizontalScrollIndicator={false}
+            >
+              {contracts.map((element, key) => (
+                <TouchableOpacity
+                  style={styles.card}
+                  key={key}
+                  // onPress={() => handleGuide(element.city)}
+                >
+                  <Text style={styles.cardTitle}>{element}</Text>
+                  <Text style={{ marginLeft: "auto", color: "#828282" }}>
+                    11 Feb 2024
+                  </Text>
+                </TouchableOpacity>
+              ))}
+            </ScrollView>
+          </View>
+          <View>
+            <Text style={styles.subheading}>Contract Offers</Text>
+            <ScrollView
+              horizontal
+              style={{ paddingBottom: 20 }}
+              showsHorizontalScrollIndicator={false}
+            >
+              {contracts.map((element, key) => (
+                <TouchableOpacity
+                  style={styles.cardOffer}
+                  key={key}
+                  // onPress={() => handleGuide(element.city)}
+                >
+                  <Text style={styles.cardTitleOffer}>{element}</Text>
+                  {/* <Text style={{ marginLeft: "auto",color:"#828282" }}>11 Feb 2024</Text> */}
+                </TouchableOpacity>
+              ))}
+            </ScrollView>
+          </View>
         </View>
         <View>
           <Text style={styles.subTitle}>Learning</Text>
+          <ScrollView
+            horizontal
+            style={{ paddingBottom: 20 }}
+            showsHorizontalScrollIndicator={false}
+          >
+            {learning.map((element, key) => (
+              <TouchableOpacity
+                style={styles.cardlearning}
+                key={key}
+                // onPress={() => handleGuide(element.city)}
+              >
+                <Text style={styles.cardTitlelearning}>{element}</Text>
+              </TouchableOpacity>
+            ))}
+          </ScrollView>
         </View>
       </ScrollView>
+      <View>
+        <FloatingAction
+          // floatingIcon={
+          //   <Icons
+          //     name="cart-shopping"
+          //     style={{ fontSize: 20, color: "white" }}
+          //   />
+          // }
+          distanceToEdge={{ horizontal: 0, vertical: 80 }}
+          actions={actions}
+          style={{
+            position: "absolute",
+            paddingBottom: 40,
+          }}
+          buttonSize={60}
+          color={"#00ADB5"}
+          onPressItem={(name) => {
+            console.log(`selected button: ${name}`);
+          }}
+        />
+      </View>
     </SafeAreaView>
   );
 };
@@ -184,20 +324,59 @@ const styles = StyleSheet.create({
   },
   card: {
     flex: 1,
-    // backgroundColor: "#fff",
-    paddingVertical: 20,
-    paddingHorizontal: 10,
+    backgroundColor: "#efefef",
+    paddingVertical: 15,
+    paddingHorizontal: 20,
     borderRadius: 20,
-    height: 400,
+    height: 50,
     width: "100%",
     marginRight: 12,
     marginBottom: 10,
+    display: "flex",
+    flexDirection: "row",
   },
   cardTitle: {
-    color: "#1c1c1c",
+    color: "#828282", // textAlign: "center",
+    fontWeight: "400",
+    fontSize: 15,
+  },
+  cardOffer: {
+    flex: 1,
+    backgroundColor: "#efefef",
+    paddingVertical: 15,
+    paddingHorizontal: 20,
+    borderRadius: 20,
+    height: 125,
+    width: "100%",
+    marginRight: 12,
+    marginBottom: 10,
+    display: "flex",
+    flexDirection: "column",
+  },
+  cardTitleOffer: {
+    color: "#828282",
     // textAlign: "center",
     fontWeight: "400",
-    fontSize: 20,
+    fontSize: 15,
+  },
+  cardlearning: {
+    flex: 1,
+    backgroundColor: "#efefef",
+    paddingVertical: 15,
+    paddingHorizontal: 20,
+    borderRadius: 20,
+    height: 125,
+    width: 250,
+    marginRight: 12,
+    marginBottom: 10,
+    display: "flex",
+    flexDirection: "column",
+  },
+  cardTitlelearning: {
+    color: "#828282",
+    // textAlign: "center",
+    fontWeight: "400",
+    fontSize: 15,
   },
   header: {
     flexDirection: "row",
@@ -209,7 +388,11 @@ const styles = StyleSheet.create({
     color: "#00ADB5",
     fontWeight: "400",
     fontSize: 22,
-    paddingLeft: 3,
+    // paddingLeft: 3,
+  },
+  subheading: {
+    fontSize: 17,
+    paddingBottom: 10,
   },
   seemoreheader: {
     flexDirection: "row",
@@ -232,40 +415,39 @@ const styles = StyleSheet.create({
     alignSelf: "center",
   },
 
-
   socialsubTitle: {
     fontSize: 18,
-    fontWeight: 'bold',
+    fontWeight: "bold",
     marginBottom: 10,
   },
   socialiconsContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-around',
+    flexDirection: "row",
+    justifyContent: "space-around",
     marginBottom: 20,
-    padding:20,
-    backgroundColor:"#efefef",
-    borderRadius:10
+    padding: 20,
+    backgroundColor: "#efefef",
+    borderRadius: 10,
   },
   socialiconContainer: {
-    alignItems: 'center',
+    alignItems: "center",
   },
   socialiconText: {
     fontSize: 12,
     marginTop: 5,
   },
-  socialiconNumbers:{
+  socialiconNumbers: {
     fontSize: 20,
     marginTop: 5,
-    fontWeight:"bold",
+    fontWeight: "bold",
   },
   socialuploadButton: {
-    backgroundColor: '#007AFF',
+    backgroundColor: "#007AFF",
     paddingVertical: 10,
     paddingHorizontal: 20,
     borderRadius: 5,
   },
   socialuploadButtonText: {
-    color: 'white',
-    fontWeight: 'bold',
+    color: "white",
+    fontWeight: "bold",
   },
 });
