@@ -10,30 +10,65 @@ import {
 import React, { useEffect, useState } from "react";
 import { auth } from "../../firebase";
 import { useNavigation } from "@react-navigation/native";
-import { sendPasswordResetEmail, signInWithEmailAndPassword } from "firebase/auth";
+import {
+  sendPasswordResetEmail,
+  signInWithEmailAndPassword,
+} from "firebase/auth";
+import { doc, getDoc } from "firebase/firestore";
+import { db } from "../../firebase";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [role, setRole] = useState("");
   const navigation = useNavigation();
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
-      if (user) {
+      if (role === "shg" || role === "company") {
+        navigation.replace("MainCompany");
+      } else if (role === "user") {
         navigation.replace("Main");
+      } else {
+        console.log("Invalid role:", role);
       }
     });
 
     return unsubscribe;
   }, []);
 
-  const handleLogin = () => {
-    signInWithEmailAndPassword(auth, email, password)
-      .then((userCredentials) => {
-        const user = userCredentials.user;
-        console.log("Logged in with:", user.email);
-      })
-      .catch((error) => alert(error.message));
+  const handleLogin = async () => {
+    try {
+      const userCredentials = await signInWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+      const user = userCredentials.user;
+      console.log("Logged in with:", user.email);
+
+      const fetchUserRole = async () => {
+        try {
+          const data = await getDoc(doc(db, "User-Data", email));
+          if (data.exists()) {
+            setRole(data.data().role);
+            if (role === "shg" || role === "company") {
+              navigation.replace("MainCompany");
+            } else if (role === "user") {
+              navigation.replace("Main");
+            } else {
+              console.log("Invalid role:", role);
+            }
+          }
+        } catch (error) {
+          console.error("Error fetching user role:", error);
+        }
+      };
+
+      await fetchUserRole();
+    } catch (error) {
+      alert(error.message);
+    }
   };
 
   const changePassword = () => {
@@ -109,13 +144,13 @@ const styles = StyleSheet.create({
     // justifyContent: "center",
     alignItems: "center",
     backgroundColor: "#fff",
-    paddingTop:150,
+    paddingTop: 150,
   },
   title: {
     fontSize: 40,
     fontWeight: "700",
     color: "#1f1f1f",
-    paddingBottom:50,
+    paddingBottom: 50,
   },
   inputContainer: {
     width: "80%",
@@ -171,7 +206,7 @@ const styles = StyleSheet.create({
   },
   text: {
     color: "#878787",
-    marginTop:8,
+    marginTop: 8,
   },
   inputcontainer: {
     height: 65,

@@ -5,7 +5,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Marketplace from "./src/screens/Marketplace";
 import Community from "./src/screens/Community";
-import Icon from "react-native-vector-icons/FontAwesome5";
+import Icon from "react-native-vector-icons/FontAwesome";
 import Icons from "react-native-vector-icons/MaterialCommunityIcons";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import AntDesign from "react-native-vector-icons/AntDesign";
@@ -13,6 +13,7 @@ import FeatherIcon from "react-native-vector-icons/Feather";
 import You from "./src/screens/You";
 import Login from "./src/screens/Login";
 import SignUp from "./src/screens/SignUp";
+import Enterprise from "./src/screens/Enterprise";
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -27,10 +28,10 @@ const Main = () => {
           backgroundColor: "#fff",
           borderTopWidth: 0,
         },
-        tabBarActiveTintColor: '#00ADB5',
-        tabBarItemStyle:{
+        tabBarActiveTintColor: "#00ADB5",
+        tabBarItemStyle: {
           // margin:0,
-        }
+        },
       }}
     >
       <Tab.Screen
@@ -87,6 +88,94 @@ const Main = () => {
   );
 };
 
+const MainCompany = () => {
+  return (
+    <Tab.Navigator
+      style={styles.bottomBar}
+      screenOptions={{
+        tabBarStyle: {
+          height: 50,
+          backgroundColor: "#fff",
+          borderTopWidth: 0,
+        },
+        tabBarActiveTintColor: "#00ADB5",
+        tabBarItemStyle: {
+          // margin:0,
+        },
+      }}
+    >
+      <Tab.Screen
+        name="Marketplace"
+        options={{
+          headerShown: false,
+          tabBarIcon: (tabInfo) => {
+            return (
+              <FeatherIcon
+                name="shopping-bag"
+                size={30}
+                color={tabInfo.focused ? "#00ADB5" : "#8e8e93"}
+                style={styles.icons}
+              />
+            );
+          },
+        }}
+        component={Marketplace}
+      />
+
+      <Tab.Screen
+        name="Community"
+        options={{
+          headerShown: false,
+          tabBarIcon: (tabInfo) => {
+            return (
+              <AntDesign
+                name="earth"
+                size={28}
+                color={tabInfo.focused ? "#00ADB5" : "#8e8e93"}
+              />
+            );
+          },
+        }}
+        component={Community}
+      />
+
+      <Tab.Screen
+        name="Enterprise"
+        options={{
+          headerShown: false,
+          tabBarIcon: (tabInfo) => {
+            return (
+              <Icon
+                name="building-o"
+                size={28}
+                color={tabInfo.focused ? "#00ADB5" : "#8e8e93"}
+              />
+            );
+          },
+        }}
+        component={Enterprise}
+      />
+
+      <Tab.Screen
+        name="You"
+        options={{
+          headerShown: false,
+          tabBarIcon: (tabInfo) => {
+            return (
+              <Icons
+                name="account"
+                size={26}
+                color={tabInfo.focused ? "#00ADB5" : "#8e8e93"}
+              />
+            );
+          },
+        }}
+        component={You}
+      />
+    </Tab.Navigator>
+  );
+};
+
 export default function App() {
   return (
     <NavigationContainer>
@@ -105,6 +194,11 @@ export default function App() {
           options={{ headerShown: false }}
           name="Main"
           component={Main}
+        />
+        <Stack.Screen
+          options={{ headerShown: false }}
+          name="MainCompany"
+          component={MainCompany}
         />
       </Stack.Navigator>
     </NavigationContainer>
@@ -125,7 +219,7 @@ const styles = StyleSheet.create({
     marginVertical: 0,
   },
   icons: {
-    padding:0,
-    margin:0,
-  }
+    padding: 0,
+    margin: 0,
+  },
 });

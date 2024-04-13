@@ -53,8 +53,7 @@ const Marketplace = () => {
 
     const fetchData = async () => {
       try {
-        const cachedData = await AsyncStorage.getItem("user-data");
-        // cachedData = false;
+        cachedData = false;
         if (cachedData) {
           const parsedCachedData = JSON.parse(cachedData);
           setUser(parsedCachedData.user);
@@ -75,15 +74,6 @@ const Marketplace = () => {
               setUser(data);
               setMonument(newMonumentsData);
 
-              const cachedDataObject = {
-                user: data,
-                monuments: newMonumentsData,
-              };
-
-              await AsyncStorage.setItem(
-                "user-data",
-                JSON.stringify(cachedDataObject)
-              );
             }
           } catch (e) {
             console.log(e);
