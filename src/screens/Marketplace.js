@@ -12,6 +12,7 @@ import {
 } from "react-native";
 import React, { useState, useEffect } from "react";
 import { auth, db } from "../../firebase";
+import Icon from "react-native-vector-icons/Feather";
 import { doc, getDoc, collection, getDocs } from "firebase/firestore";
 import { useNavigation } from "@react-navigation/native";
 import Icons from "react-native-vector-icons/FontAwesome6";
@@ -20,6 +21,7 @@ import { FloatingAction } from "react-native-floating-action";
 const Marketplace = () => {
   const [email, setEmail] = useState("");
   const [userinfo, setUser] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
   const [data, setData] = useState([
     "10% off on food",
     "12% off on clothes",
@@ -137,6 +139,23 @@ const Marketplace = () => {
             {userinfo.firstname}{" "}
           </Text>
         </Text>
+        <View style={styles.inputContainer}>
+          <Icon
+            name="search"
+            size={20}
+            color="#d6d6d6"
+            style={styles.searchIcon}
+          />
+          <TextInput
+            placeholder="Search..."
+            placeholderTextColor="#e6e6e6"
+            value={searchTerm}
+            onChangeText={(text) => setSearchTerm(text)}
+            // onSubmitEditing={handleSearch}
+            // onFocus={handleSearchFocus}
+            style={styles.textInput}
+          />
+        </View>
         <ScrollView
           horizontal
           // decelerationRate={0}
@@ -193,25 +212,6 @@ const Marketplace = () => {
         </View>
 
         <Text style={styles.subTitle}>Best Sellers</Text>
-
-        {/* <ScrollView
-          // horizontal
-          // decelerationRate={0}
-          // snapToInterval={100}
-          snapToAlignment={"center"}
-          style={styles.tertiarycards}
-          showsHorizontalScrollIndicator={false}
-        >
-          {plan.map((element, key) => (
-            <TouchableOpacity
-              style={styles.tertiarycard}
-              key={key}
-              onPress={() => handlePlan(element)}
-            >
-              <Text style={styles.tertiarycardTitle}>{element}</Text>
-            </TouchableOpacity>
-          ))}
-        </ScrollView> */}
         <ScrollView horizontal={true} style={{ width: "100%" }}>
           <FlatList
             data={plan}
@@ -248,11 +248,11 @@ const Marketplace = () => {
               style={{ fontSize: 20, color: "white" }}
             />
           }
-          distanceToEdge={{horizontal: 10, vertical: 50 }}
+          distanceToEdge={{ horizontal: 0, vertical: 80 }}
           actions={actions}
           style={{
-            position: 'absolute',
-            paddingBottom:40,
+            position: "absolute",
+            paddingBottom: 40,
           }}
           buttonSize={60}
           color={"#00ADB5"}
@@ -279,14 +279,14 @@ const styles = StyleSheet.create({
     fontSize: 40,
     fontWeight: "700",
     color: "#1c1c1c",
-    paddingBottom: 20,
+    paddingBottom: 0,
   },
   inputContainer: {
     flexDirection: "row",
     alignItems: "center",
-    marginBottom: 20,
+    marginBottom: 40,
     marginTop: 20,
-    borderColor: "#3c3c3c",
+    borderColor: "#d6d6d6",
     borderWidth: 2,
     borderRadius: 30,
     paddingHorizontal: 20,

@@ -68,32 +68,66 @@ const Community = () => {
 
   const posts = [
     {
-      userProfilePicture: "https://vajiramandravi.s3.us-east-1.amazonaws.com/media/2020/3/9/9/33/26/women_SHGs.jpg",
+      userProfilePicture:
+        "https://vajiramandravi.s3.us-east-1.amazonaws.com/media/2020/3/9/9/33/26/women_SHGs.jpg",
       username: "user1",
-      imageUrl: "https://www.villagesquare.in/wp-content/uploads/2023/09/Glossary-itme-2.jpeg",
+      imageUrl:
+        "https://www.villagesquare.in/wp-content/uploads/2023/09/Glossary-itme-2.jpeg",
       caption: "Meet our new joinees.",
-      date:"11 Feb 2024",
+      date: "11 Feb 2024",
     },
     {
-      userProfilePicture: "https://i0.wp.com/compass.rauias.com/wp-content/uploads/2023/05/image-440.png?resize=413%2C273&ssl=1",
+      userProfilePicture:
+        "https://i0.wp.com/compass.rauias.com/wp-content/uploads/2023/05/image-440.png?resize=413%2C273&ssl=1",
       username: "user2",
-      imageUrl: "https://arunachaltimes.in/wp-content/uploads/2022/01/Loans-provided-to-66-SHGs.jpg",
+      imageUrl:
+        "https://arunachaltimes.in/wp-content/uploads/2022/01/Loans-provided-to-66-SHGs.jpg",
       caption: "Building towards  a better future.",
-      date:"11 Feb 2024",
+      date: "11 Feb 2024",
     },
     {
-      userProfilePicture: "https://qph.cf2.quoracdn.net/main-qimg-19f2f176ceb0e9d0cebea858a8db1b9f.webp",
+      userProfilePicture:
+        "https://qph.cf2.quoracdn.net/main-qimg-19f2f176ceb0e9d0cebea858a8db1b9f.webp",
       username: "user1",
-      imageUrl: "https://img-cdn.thepublive.com/fit-in/640x430/filters:format(webp)/ravivar-vichar/media/media_files/5WqDoU5RzGIKUlrnZpns.jpg",
+      imageUrl:
+        "https://img-cdn.thepublive.com/fit-in/640x430/filters:format(webp)/ravivar-vichar/media/media_files/5WqDoU5RzGIKUlrnZpns.jpg",
       caption: "Together we rise.",
-      date:"11 Feb 2024",
+      date: "11 Feb 2024",
     },
     {
-      userProfilePicture: "https://vajiramandravi.s3.us-east-1.amazonaws.com/media/2020/3/9/9/33/26/women_SHGs.jpg",
+      userProfilePicture:
+        "https://vajiramandravi.s3.us-east-1.amazonaws.com/media/2020/3/9/9/33/26/women_SHGs.jpg",
       username: "user2",
       imageUrl: "https://svpss.in/wp-content/uploads/2019/09/shg.png",
       caption: "Taking the oath  to protect Mother Earth.",
-      date:"11 Feb 2024",
+      date: "11 Feb 2024",
+    },
+  ];
+
+  const actions = [
+    {
+      text: "Accessibility",
+      icon: require("../assets/splash.png"),
+      name: "bt_accessibility",
+      position: 2,
+    },
+    {
+      text: "Language",
+      icon: require("../assets/splash.png"),
+      name: "bt_language",
+      position: 1,
+    },
+    {
+      text: "Location",
+      icon: require("../assets/splash.png"),
+      name: "bt_room",
+      position: 3,
+    },
+    {
+      text: "Video",
+      icon: require("../assets/splash.png"),
+      name: "bt_videocam",
+      position: 4,
     },
   ];
 
@@ -130,6 +164,30 @@ const Community = () => {
           <Post key={index} post={post} />
         ))}
       </ScrollView>
+      <View>
+        <FloatingAction
+          // floatingIcon={
+          //   <View style={{display:"flex", flexDirection:"row"}}>
+          //   <Icons
+          //     name="plus"
+          //     style={{ fontSize: 20, color: "white" }}
+          //   />
+          //   <Text>Post</Text>
+          //   </View>
+          // }
+          distanceToEdge={{ horizontal: 0, vertical: 80 }}
+          actions={actions}
+          style={{
+            position: "absolute",
+            paddingBottom: 40,
+          }}
+          buttonSize={60}
+          color={"#00ADB5"}
+          onPressItem={(name) => {
+            console.log(`selected button: ${name}`);
+          }}
+        />
+      </View>
     </SafeAreaView>
   );
 };
