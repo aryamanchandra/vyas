@@ -9,6 +9,7 @@ import {
   TouchableOpacity,
   FlatList,
   Pressable,
+  Button,
 } from "react-native";
 import React, { useState, useEffect } from "react";
 import { auth, db } from "../../firebase";
@@ -101,6 +102,10 @@ const Marketplace = () => {
 
   const handleNearby = (element) => {
     navigation.navigate("City", { element });
+  };
+
+  const handleMove = () => {
+    navigation.navigate("AR");
   };
 
   const actions = [
@@ -212,6 +217,7 @@ const Marketplace = () => {
         </View>
 
         <Text style={styles.subTitle}>Best Sellers</Text>
+        <TouchableOpacity onPress={handleMove} ><Text>AR Button</Text></TouchableOpacity>
         <ScrollView horizontal={true} style={{ width: "100%" }}>
           <FlatList
             data={plan}

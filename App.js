@@ -14,6 +14,7 @@ import You from "./src/screens/You";
 import Login from "./src/screens/Login";
 import SignUp from "./src/screens/SignUp";
 import Enterprise from "./src/screens/Enterprise";
+import AR from "./src/screens/AR";
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -215,6 +216,11 @@ export default function App() {
           options={{ headerShown: false }}
           name="MainCompany"
           component={MainCompany}
+        />
+        <Stack.Screen
+          options={{ headerShown: false }}
+          name="AR"
+          component={AR}
         />
       </Stack.Navigator>
     </NavigationContainer>
