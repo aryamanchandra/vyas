@@ -72,24 +72,28 @@ const Community = () => {
       username: "user1",
       imageUrl: "https://www.villagesquare.in/wp-content/uploads/2023/09/Glossary-itme-2.jpeg",
       caption: "Meet our new joinees.",
+      date:"11 Feb 2024",
     },
     {
       userProfilePicture: "https://i0.wp.com/compass.rauias.com/wp-content/uploads/2023/05/image-440.png?resize=413%2C273&ssl=1",
       username: "user2",
       imageUrl: "https://arunachaltimes.in/wp-content/uploads/2022/01/Loans-provided-to-66-SHGs.jpg",
       caption: "Building towards  a better future.",
+      date:"11 Feb 2024",
     },
     {
       userProfilePicture: "https://qph.cf2.quoracdn.net/main-qimg-19f2f176ceb0e9d0cebea858a8db1b9f.webp",
       username: "user1",
       imageUrl: "https://img-cdn.thepublive.com/fit-in/640x430/filters:format(webp)/ravivar-vichar/media/media_files/5WqDoU5RzGIKUlrnZpns.jpg",
       caption: "Together we rise.",
+      date:"11 Feb 2024",
     },
     {
       userProfilePicture: "https://vajiramandravi.s3.us-east-1.amazonaws.com/media/2020/3/9/9/33/26/women_SHGs.jpg",
       username: "user2",
       imageUrl: "https://svpss.in/wp-content/uploads/2019/09/shg.png",
       caption: "Taking the oath  to protect Mother Earth.",
+      date:"11 Feb 2024",
     },
   ];
 

@@ -4,17 +4,18 @@ import { View, Text, Image, StyleSheet } from 'react-native';
 const Post = ({ post }) => {
   return (
     <View style={styles.container}>
-      {/* Header */}
       <View style={styles.header}>
         <Image source={{ uri: post.userProfilePicture }} style={styles.profilePicture} />
         <Text style={styles.username}>{post.username}</Text>
+        <Text style={styles.date}>{post.date}</Text>
       </View>
 
-      {/* Image */}
       <Image source={{ uri: post.imageUrl }} style={styles.image} />
+      
+      {/* <View style={styles.captionContainer}></View> */}
 
-      {/* Caption */}
       <View style={styles.captionContainer}>
+        <Text style={styles.username}>{post.username}</Text>
         <Text style={styles.caption}>{post.caption}</Text>
       </View>
     </View>
@@ -39,15 +40,20 @@ const styles = StyleSheet.create({
   username: {
     fontWeight: 'bold',
   },
+  date: {
+    fontWeight: 'bold',
+    marginLeft:"auto",
+  },
   image: {
     width: '100%',
     height: 300,
   },
   captionContainer: {
     padding: 10,
+    flexDirection: 'row',
   },
   caption: {
-    // Add any additional styles for the caption
+    paddingLeft:5
   },
 });
 
