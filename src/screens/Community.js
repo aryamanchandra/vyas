@@ -16,6 +16,7 @@ import { doc, getDoc, collection, getDocs } from "firebase/firestore";
 import { useNavigation } from "@react-navigation/native";
 import Icons from "react-native-vector-icons/FontAwesome6";
 import { FloatingAction } from "react-native-floating-action";
+import Post from "../components/Post";
 
 const Community = () => {
   const navigation = useNavigation();
@@ -38,7 +39,6 @@ const Community = () => {
         if (cachedData) {
           const parsedCachedData = JSON.parse(cachedData);
           setUser(parsedCachedData.user);
-          setMonument(parsedCachedData.monuments);
         } else {
           const docRef = await doc(db, "User-Data", user.email);
 
@@ -53,17 +53,6 @@ const Community = () => {
             if (docSnap.exists()) {
               const data = docSnap.data();
               setUser(data);
-              setMonument(newMonumentsData);
-
-              const cachedDataObject = {
-                user: data,
-                monuments: newMonumentsData,
-              };
-
-              await AsyncStorage.setItem(
-                "user-data",
-                JSON.stringify(cachedDataObject)
-              );
             }
           } catch (e) {
             console.log(e);
@@ -77,11 +66,38 @@ const Community = () => {
     fetchData();
   }, [user]);
 
+  const posts = [
+    {
+      userProfilePicture: "https://vajiramandravi.s3.us-east-1.amazonaws.com/media/2020/3/9/9/33/26/women_SHGs.jpg",
+      username: "user1",
+      imageUrl: "https://www.villagesquare.in/wp-content/uploads/2023/09/Glossary-itme-2.jpeg",
+      caption: "Meet our new joinees.",
+    },
+    {
+      userProfilePicture: "https://i0.wp.com/compass.rauias.com/wp-content/uploads/2023/05/image-440.png?resize=413%2C273&ssl=1",
+      username: "user2",
+      imageUrl: "https://arunachaltimes.in/wp-content/uploads/2022/01/Loans-provided-to-66-SHGs.jpg",
+      caption: "Building towards  a better future.",
+    },
+    {
+      userProfilePicture: "https://qph.cf2.quoracdn.net/main-qimg-19f2f176ceb0e9d0cebea858a8db1b9f.webp",
+      username: "user1",
+      imageUrl: "https://img-cdn.thepublive.com/fit-in/640x430/filters:format(webp)/ravivar-vichar/media/media_files/5WqDoU5RzGIKUlrnZpns.jpg",
+      caption: "Together we rise.",
+    },
+    {
+      userProfilePicture: "https://vajiramandravi.s3.us-east-1.amazonaws.com/media/2020/3/9/9/33/26/women_SHGs.jpg",
+      username: "user2",
+      imageUrl: "https://svpss.in/wp-content/uploads/2019/09/shg.png",
+      caption: "Taking the oath  to protect Mother Earth.",
+    },
+  ];
+
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView showsVerticalScrollIndicator={false}>
         <Text style={styles.title}>Community</Text>
-        <ScrollView
+        {/* <ScrollView
           // decelerationRate={0}
           // snapToInterval={100}
           snapToAlignment={"center"}
@@ -105,7 +121,10 @@ const Community = () => {
                 />
             </View>
           ))}
-        </ScrollView>
+        </ScrollView> */}
+        {posts.map((post, index) => (
+          <Post key={index} post={post} />
+        ))}
       </ScrollView>
     </SafeAreaView>
   );
